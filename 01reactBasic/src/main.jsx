@@ -5,10 +5,5 @@ import Chai from './chai'
 
 
 createRoot(document.getElementById('root')).render(
-    <>
     <App/>
-    <Chai/>
-    </>
-
- 
 )
