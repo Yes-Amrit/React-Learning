@@ -1,0 +1,113 @@
+React Hooks क्या होते हैं?
+✅ Answer:
+
+Hooks React 16.8 में आए थे।
+ये ऐसे functions हैं जो function components में React के features (जैसे state और lifecycle methods) को use करने देते हैं।
+पहले ये सिर्फ class components में possible था।
+
+🔧 Commonly Used Hooks with Code
+🟡 1. useState() Hook – state बनाने के लिए
+jsx
+-----------------------------------------------------------------------------------
+import React, { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0); // initial value = 0
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>बढ़ाओ</button>
+    </div>
+  );
+}
+-----------------------------------------------------------------------------------
+📌 useState से हम variable (जैसे count) को store और update कर सकते हैं।
+
+🟡 2. useEffect() Hook – Side Effects के लिए
+jsx
+-----------------------------------------------------------------------------------
+import React, { useState, useEffect } from 'react';
+
+function Timer() {
+  const [time, setTime] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(time => time + 1);
+    }, 1000);
+
+    return () => clearInterval(interval); // cleanup
+  }, []);
+
+  return <p>Time: {time} seconds</p>;
+}
+-----------------------------------------------------------------------------------
+📌 useEffect हर बार component render होने के बाद चलता है। इसमें API call, timer, event listener जैसे काम होते हैं।
+
+🟡 3. useRef() Hook – DOM या values को track करने के लिए
+jsx
+-----------------------------------------------------------------------------------
+import React, { useRef } from 'react';
+
+function FocusInput() {
+  const inputRef = useRef(null);
+
+  const handleClick = () => {
+    inputRef.current.focus(); // input को focus करेगा
+  };
+
+  return (
+    <>
+      <input ref={inputRef} type="text" />
+      <button onClick={handleClick}>Focus करो</button>
+    </>
+  );
+}
+-----------------------------------------------------------------------------------
+📌 useRef से हम DOM elements को directly access कर सकते हैं या values को बिना re-render track कर सकते हैं।
+
+🟡 4. useContext() Hook – Props drilling से बचने के लिए
+jsx
+-----------------------------------------------------------------------------------
+import React, { useContext, createContext } from 'react';
+
+const NameContext = createContext();
+
+function Child() {
+  const name = useContext(NameContext);
+  return <h1>नमस्ते {name}</h1>;
+}
+
+function App() {
+  return (
+    <NameContext.Provider value="Amrit">
+      <Child />
+    </NameContext.Provider>
+  );
+}
+-----------------------------------------------------------------------------------
+📌 useContext से हम directly context के value को access कर सकते हैं, बिना बार-बार props भेजे।
+
+🧠 Interview Q&A on Hooks
+❓ Q: useState और useEffect में क्या फर्क है?
+✅ Answer:
+
+useState से हम state बना और update कर सकते हैं, जबकि useEffect side effects (जैसे API call, timer) को handle करता है।
+
+❓ Q: क्या हम class components में Hooks use कर सकते हैं?
+✅ Answer:
+
+नहीं, Hooks सिर्फ functional components में काम करते हैं।
+
+❓ Q: useRef का real-life use क्या है?
+✅ Answer:
+
+जैसे form में input पर auto-focus करवाना, या किसी previous value को track करना।
+
+❓ Q: useEffect के dependency array का मतलब?
+✅ Answer:
+
+ये बताता है कि effect कब चले।
+अगर empty [] है, तो सिर्फ एक बार चलेगा (componentDidMount जैसा)।
+अगर कुछ values दी हैं, तो जब वो values बदलें तब चलेगा।

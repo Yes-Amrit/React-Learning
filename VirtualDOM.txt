@@ -1,0 +1,59 @@
+1. Virtual DOM (वर्चुअल DOM) क्या है?
+सोचो: तुम्हारे पास एक वेबसाइट है और उसमें बहुत सारे HTML एलिमेंट्स हैं।
+
+अब अगर हर बार कुछ बदलने पर पूरा पेज दोबारा बने, तो वह धीमा हो जाएगा।
+
+🚀 Virtual DOM कैसे मदद करता है?
+React एक Virtual DOM बनाता है – एक lightweight copy जो असली DOM जैसा होता है।
+
+जब कुछ बदलता है, React पहले इसे Virtual DOM में अपडेट करता है।
+
+फिर React पता लगाता है कि असल DOM में क्या-क्या बदलना है और सिर्फ वही बदलेगा।
+
+📌 इससे परफॉर्मेंस बहुत तेज़ हो जाती है।
+
+💬 Interview me answer:
+"Virtual DOM ek halka duplicate hota hai real DOM ka, jisme React changes ko pehle karta hai, aur sirf necessary changes real DOM me karta hai, jisse performance fast hoti hai."
+
+✅ 2. Reconciliation (रिकॉन्सिलिएशन) क्या है?
+जब भी React को किसी component में बदलाव दिखता है, वह तय करता है कि DOM में क्या-क्या बदलना चाहिए।
+इस process को ही Reconciliation कहते हैं।
+
+🔧 कैसे करता है?
+React पुराने Virtual DOM को नए Virtual DOM से compare करता है (diffing algorithm).
+
+फिर वो सिर्फ जरूरी changes को असली DOM में apply करता है।
+
+💬 Interview me answer:
+"Reconciliation ek process hai jisme React naye aur purane Virtual DOM ko compare karta hai aur sirf required DOM changes ko apply karta hai."
+
+✅ 3. React Fiber (रिएक्ट फाइबर) क्या है?
+पहले React का render process synchronous (एक बार में पूरा) होता था, जिससे बड़ी वेबसाइट धीमी लगती थी।
+
+React Fiber एक नई architecture है जो React ने बनाया ताकि:
+
+Rendering को छोटे-छोटे कामों में बांटा जा सके (incremental rendering)
+
+UI fast और smooth रहे (scheduling और prioritization के साथ)
+
+🎯 फायदे:
+बड़े UI को smoothly update करना
+
+Low priority काम को बाद में करना (background tasks)
+
+💬 Interview me answer:
+"React Fiber ek nayi architecture hai jisse React rendering ko chhote parts me todta hai aur important updates ko pehle karta hai, jisse UI smooth aur fast lagta hai."
+
+🔁 एक लाइन में तीनों का रिश्ता:
+"React Virtual DOM mein changes karta hai, Reconciliation se compare karta hai, aur Fiber se efficiently render karta hai."
+
+
+
+Virtual DOM, Reconciliation और Fiber में क्या अंतर है?
+✅ Answer:
+
+Virtual DOM: DOM का हल्का copy जो memory में होता है।
+
+Reconciliation: पुराने और नए Virtual DOM को compare करने की process।
+
+Fiber: React का नया system जो rendering को efficient और smooth बनाता है।
