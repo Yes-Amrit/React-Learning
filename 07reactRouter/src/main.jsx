@@ -39,7 +39,7 @@ const router = createBrowserRouter([
         loader: async() => {
           const response = await fetch("https://api.github.com/users/Yes-Amrit",{
             headers:{
-              Authorization: `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`,"User-Agent":"react-App"
+              Authorization: `token ${import.meta.env.VITE_GITHUB_TOKEN}`,"User-Agent":"react-App"
             },
           });
           
