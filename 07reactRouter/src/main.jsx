@@ -25,34 +25,26 @@ const router = createBrowserRouter([
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
-      {
-        path: "",
-        element: <Home />
-      },
-      {
-        path: "about",
-        element: <About />
-      },
-      {
-        path: "github",
+      { path: "", element: <Home /> },
+      { path: "about", element: <About /> },
+      { 
+        path: "github", 
         element: <Github />,
-        loader: async() => {
-          const response = await fetch("https://api.github.com/users/Yes-Amrit",{
-            headers:{
-              Authorization: `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`,"User-Agent":"react-App"
-            },
-          });
-          
-          return response.json();
-        }
+        loader: async () => {
+          try {
+            const response = await fetch("https://api.github.com/users/Yes-Amrit");
+            if (!response.ok) throw new Error("Failed to fetch");
+            return response.json();
+          } catch (err) {
+            console.error(err);
+            return { error: err.message };
+          }
+        } 
       },
-      {
-        path: "user/:userId",
-        element: <User />
-      }
+      { path: "user/:userId", element: <User /> }
     ]
   }
-])
+]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
