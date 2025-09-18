@@ -25,34 +25,25 @@ const router = createBrowserRouter([
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
-      {
-        path: "",
-        element: <Home />
-      },
-      {
-        path: "about",
-        element: <About />
-      },
-      {
-        path: "github",
+      { path: "", element: <Home /> },
+      { path: "about", element: <About /> },
+      { 
+        path: "github", 
         element: <Github />,
         loader: async() => {
           const response = await fetch("https://api.github.com/users/Yes-Amrit",{
             headers:{
-              Authorization: `token ${import.meta.env.VITE_GITHUB_TOKEN}`,"User-Agent":"react-App"
+              Authorization: `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`,"User-Agent":"react-App"
             },
           });
           
           return response.json();
         }
       },
-      {
-        path: "user/:userId",
-        element: <User />
-      }
+      { path: "user/:userId", element: <User /> }
     ]
   }
-])
+]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
