@@ -8,19 +8,21 @@ class AuthService {
     constructor() {
         this.client
             .setEndpoint(conf.appwriteUrl)
-            .setProject(conf.appwriteProjectId)
+            .setProject(conf.appwriteProjectId);
 
         this.account = new Account(this.client);
     }
 
     async createAccount({ email, password, name }) {
         try {
-            const userAccount = await this.account.create(ID.unique(), email, password, name);
-            if (userAccount) {
-                return this.login({ email, password });
-            } else {
-                return userAccount;
-            }
+            const newUser = await this.account.create(
+                ID.unique(),
+                email,
+                password,
+                name
+            );
+            if (newUser) return this.login({ email, password });
+            return newUser;
         } catch (error) {
             throw error;
         }
@@ -28,7 +30,7 @@ class AuthService {
 
     async login({ email, password }) {
         try {
-            return await this.account.createEmailSession(email, password);
+            return await this.account.createEmailPasswordSession(email, password);
         } catch (error) {
             throw error;
         }

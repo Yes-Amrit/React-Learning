@@ -13,39 +13,25 @@ export default function RTE({ name, control, label, defaultValue = "" }) {
         defaultValue={defaultValue}
         render={({ field: { onChange, value } }) => (
           <Editor
+            apiKey="ypiea8cha93vpbc7w2rraglq2geei1wwouut48vk0hawrmev"
             value={value}
             onEditorChange={onChange}
             init={{
-              initialValue: defaultValue,
               height: 500,
               menubar: true,
               plugins: [
-                "image",
-                "advlist",
-                "autolink",
-                "lists",
-                "link",
-                "charmap",
-                "preview",
-                "anchor",
-                "searchreplace",
-                "visualblocks",
-                "code",
-                "fullscreen",
-                "insertdatetime",
-                "media",
-                "table",
-                "help",
-                "wordcount",
+                'anchor', 'autolink', 'charmap', 'codesample',
+                'emoticons', 'link', 'lists', 'media',
+                'searchreplace', 'table', 'visualblocks', 'wordcount'
               ],
               toolbar:
-                "undo redo | blocks | image | bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help",
+                "undo redo | bold italic underline | alignleft aligncenter alignright | bullist numlist | link media table | removeformat",
               content_style:
-                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }"
             }}
           />
         )}
       />
     </div>
-  )
+  );
 }
