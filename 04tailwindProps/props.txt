@@ -1,0 +1,80 @@
+⚛️ React Props – आसान भाषा में
+🔹 क्या हैं Props?
+Props का मतलब है Properties.
+
+ये एक Component से दूसरे Component को data भेजने का तरीका होता है।
+
+Props read-only होते हैं — यानी आप उनको बदल नहीं सकते।
+
+🧠 इंटरव्यू लाइन में बोलो:
+"Props React में data को parent से child component में pass करने का तरीका है. ये immutable होते हैं, जिससे components predictable रहते हैं."
+
+🔧 उदाहरण (Example)
+jsx
+Copy
+Edit
+// Parent Component
+function App() {
+  return (
+    <Greeting name="Amrit" />
+  );
+}
+
+// Child Component
+function Greeting(props) {
+  return <h1>Hello, {props.name}!</h1>;
+}
+📝 Output:
+Copy
+Edit
+Hello, Amrit!
+🔍 इंटरव्यू में पूछे जाने वाले सवाल:
+1. What are props in React?
+Answer:
+
+"Props are inputs to React components. They allow data to be passed from parent to child components and are read-only."
+
+2. Can props be changed inside a component?
+Answer:
+
+"No, props are immutable. If you want to change data, you should lift the state up to the parent and pass updated props."
+
+3. Difference between Props and State?
+Props	State
+Passed from parent	Managed inside component
+Read-only	Mutable
+Used for communication	Used for internal logic
+
+4. How do you pass functions via props?
+✅ आप functions को भी props के ज़रिए pass कर सकते हो:
+
+jsx
+Copy
+Edit
+function Parent() {
+  function handleClick() {
+    alert("Clicked from child!");
+  }
+
+  return <Child onClick={handleClick} />;
+}
+
+function Child(props) {
+  return <button onClick={props.onClick}>Click Me</button>;
+}
+5. What is children in props?
+React हर component में एक default prop देता है जिसे हम props.children कहते हैं — इसका मतलब होता है कि आप HTML/JSX को nested कर सकते हैं।
+
+jsx
+Copy
+Edit
+function Wrapper(props) {
+  return <div>{props.children}</div>;
+}
+
+// Usage:
+<Wrapper>
+  <p>This is inside wrapper</p>
+</Wrapper>
+🔥 React Props – One-liner Summary for Interview:
+"React props are like function arguments – they help pass data and behavior (even functions) from one component to another in a unidirectional flow, keeping components modular and reusable."
